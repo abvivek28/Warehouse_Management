@@ -26,7 +26,7 @@ int get_details(FILE *fp)
     fp=fopen("warehouse.txt","r");
     if(fp==NULL)
     {
-        printf("Database not found");
+        printf("Database not found\n");
         return 0;
     }
     printf("enter id to be found\n");
@@ -57,7 +57,7 @@ int display_all(FILE *fp)
     fp=fopen("warehouse.txt","r");
     if(fp==NULL)
     {
-        printf("Database not found");
+        printf("Database not found\n");
         return 0;
     }
     while(fscanf(fp,"%d %s %d %f",&id,name,&qty,&price)==4)
@@ -80,7 +80,7 @@ int remove_row(FILE *fp)
     fp=fopen("warehouse.txt","r");
     if(fp==NULL)
     {
-        printf("Database not found");
+        printf("Database not found\n");
         return 0;
     }
     printf("enter id to be removed\n");
@@ -112,7 +112,7 @@ int sell_item(FILE *fp)
     fp=fopen("warehouse.txt","r");
     if(fp==NULL)
     {
-        printf("Database not found");
+        printf("Database not found\n");
         return 0;
     }
     printf("enter id of item sold\n");
@@ -123,7 +123,15 @@ int sell_item(FILE *fp)
     {
         if(id==to_find)
         {
-            fprintf(fp1,"%d \t %s \t %d \t %f \n",id,name,(qty-qty_sold),price);
+            if(qty>=qty_sold)
+            {
+                fprintf(fp1,"%d \t %s \t %d \t %f \n",id,name,(qty-qty_sold),price);
+                continue;
+            }
+            else
+            {
+                printf("there are not sufficient items to sell\n");
+            }
         }
         fprintf(fp1,"%d \t %s \t %d \t %f \n",id,name,qty,price);
     }
