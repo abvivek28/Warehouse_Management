@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1711273149 source:d:\program\warehouse_management\main.c
+	<stdio.h>
+	<stdlib.h>
+
